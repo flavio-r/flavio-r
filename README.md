@@ -32,4 +32,6 @@
 
 <p align="center">
   <a href="http://www.flavior.com.br"><code>SITE ↗</code></a>
+  &nbsp;
+  <a href="https://www.linkedin.com/in/flaviorr/"><code>LINKEDIN ↗</code></a>
 </p>

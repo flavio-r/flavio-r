@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="./assets/00-hero.svg" width="100%" alt="Flávio R. — software, integrações e automação, em Joinville, SC. Hubs corporativos em TypeScript e React; integrações com SAP Business One e HANA; automação com n8n e agentes de IA; infra em Docker, NGINX e Portainer." />
+  <img src="./assets/00-hero.svg" width="100%" alt="Flávio R. — gerente de TI com a mão no código, em Joinville, SC. Gestão de contratos, orçamento e equipe; integrações com SAP Business One e HANA; automação com n8n e agentes de IA; infraestrutura, segurança e LGPD." />
+</p>
+
+<p align="center">
+  <img src="./assets/01-gestao.svg" width="100%" alt="Gestão de TI — da negociação ao servidor. Contratos, orçamento, negociação, infraestrutura, segurança e LGPD, equipe, suporte e estratégia, com cadência diária, semanal, mensal e anual." />
 </p>
 
 <p align="center">

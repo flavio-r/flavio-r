@@ -220,7 +220,7 @@ def pulse(path, dur, begin, travel=0.45, r=4):
 # ══════════════════════════════════════════════════════════════════════════
 def hero():
     W, H = 1200, 600
-    d = Doc("00-hero", W, H, "Flávio R. — software, integrações e automação, em Joinville, SC",
+    d = Doc("00-hero", W, H, "Flávio R. — gerente de TI: gestão, software, integrações e automação, em Joinville, SC",
             glow=(980, 140, 470))
     d.css = f"""
 .tag{{opacity:0;animation:tag 16s ease-in-out infinite}}
@@ -260,18 +260,18 @@ def hero():
         f'style="animation-delay:.12s">{name} <tspan fill="{LIME}">{last}</tspan></text>',
         f'<path d="M66 258C{n(66 + wname * .3)} 246 {n(66 + wname * .62)} 270 {n(50 + wname)} 252" fill="none" '
         f'stroke="{LIME}" stroke-width="6" stroke-linecap="round" class="draw"/>',
-        d.t(64, 318, "SOFTWARE · INTEGRAÇÕES · AUTOMAÇÃO", "m5", 17, TEXT, ls=3, cls="in",
+        d.t(64, 318, "GERENTE DE TI · SOFTWARE · INTEGRAÇÕES", "m5", 17, TEXT, ls=3, cls="in",
             style="animation-delay:.5s"),
-        d.t(64, 364, "Sistemas, integrações e automações —", "b4", 23, MUTED, cls="in",
+        d.t(64, 364, "Gerente de TI com a mão no código —", "b4", 23, MUTED, cls="in",
             style="animation-delay:.62s"),
-        d.t(64, 396, "do ERP ao celular de quem está na rua.", "b4", 23, MUTED, cls="in",
+        d.t(64, 396, "do contrato ao celular de quem está na rua.", "b4", 23, MUTED, cls="in",
             style="animation-delay:.62s"),
     )
     tags = [
-        "hubs corporativos em TypeScript e React",
+        "gestão de contratos, orçamento e equipe",
         "integrações com SAP Business One e HANA",
         "automação com n8n e agentes de IA",
-        "infra em Docker, NGINX e Portainer",
+        "infraestrutura, segurança e LGPD",
     ]
     box = (f'<rect x="60" y="436" width="540" height="52" rx="12" fill="{BG0}" fill-opacity=".55" '
            f'stroke="{LINE}" stroke-width="1.4"/>')
@@ -344,7 +344,92 @@ def hero():
 
 
 # ══════════════════════════════════════════════════════════════════════════
-# 01 · FRENTES
+# 01 · GESTÃO DE TI
+# ══════════════════════════════════════════════════════════════════════════
+GESTAO_ICONES = {
+    "contratos": '<path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4"/><path d="M10 12h6M10 16h3"/><path d="M4 7v14h3"/>',
+    "orcamento": '<path d="M3 20h18"/><path d="M6 20v-6M11 20V9M16 20v-9M21 20V5"/><path d="M4 9l5-4 4 3 6-5"/>',
+    "negociacao": '<path d="M4 8h14l-3.5-3.5"/><path d="M20 16H6l3.5 3.5"/>',
+    "infra": '<rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/>'
+             '<path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/>',
+    "seguranca": '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+    "equipe": '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/>'
+              '<path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.8.7 3 2.5 3.5 5.2"/>',
+    "suporte": '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/>'
+               '<rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.2-1.2 2-3 2h-3"/>',
+    "estrategia": '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/>',
+}
+
+
+def gestao():
+    areas = [
+        ("contratos", "Contratos", "Licenças, links, nuvem e suporte, com SLA cobrado."),
+        ("orcamento", "Orçamento", "Custeio, investimento e realizado × orçado."),
+        ("negociacao", "Negociação", "Mais de uma cotação; preço, prazo e SLA juntos."),
+        ("infra", "Infraestrutura", "Servidores, rede, firewall, VPN e o ambiente do HANA."),
+        ("seguranca", "Segurança e LGPD", "Acesso por cargo, MFA, backup testado e LGPD."),
+        ("equipe", "Equipe", "Prioridades claras, sustentação e projetos."),
+        ("suporte", "Suporte", "Chamados com prazo, inventário e treinamento."),
+        ("estrategia", "Estratégia", "Roadmap do negócio e indicadores à diretoria."),
+    ]
+    cad = [("DIÁRIO", "sistemas e chamados"), ("SEMANAL", "projetos e fornecedores"),
+           ("MENSAL", "realizado × orçado"), ("ANUAL", "orçamento e contratos")]
+    W, cw, gap, ch, y0 = 1200, 258, 16, 168, 214
+    cy0 = y0 + 2 * ch + gap + 20
+    H = cy0 + 100 + 44
+    label = ("Gestão de TI — " + "; ".join(f"{t}: {d}" for _, t, d in areas)
+             + ". Cadência: " + "; ".join(f"{a.lower()}: {b}" for a, b in cad) + ".")
+    d = Doc("01-gestao", W, H, label, glow=(1080, 120, 420))
+    d.css = Template("""
+.lit{animation:lit 12s ease-in-out infinite}
+@keyframes lit{0%,9%,100%{stroke:$LINE}3%{stroke:$LIME}}
+.ico{animation:ico 12s ease-in-out infinite}
+@keyframes ico{0%,9%,100%{stroke:$LIME}3%{stroke:$LIME2}}
+.run{animation:run 9s ease-in-out infinite}
+@keyframes run{0%{transform:translateX(0);opacity:0}6%,88%{opacity:1}96%,100%{transform:translateX(860px);opacity:0}}
+""").substitute(LINE=LINE, LIME=LIME, LIME2=LIME2)
+    header(d, "01", "GESTÃO DE TI", "Da negociação ao servidor",
+           "Contratos, orçamento, infraestrutura, segurança e pessoas — sem largar o código.")
+    for i, (key, title, desc) in enumerate(areas):
+        x, y = 60 + (i % 4) * (cw + gap), y0 + (i // 4) * (ch + gap)
+        delay = f"animation-delay:{i * 1.5:.1f}s"
+        g = (f'<rect x="{x}" y="{y}" width="{cw}" height="{ch}" rx="16" fill="{PANEL}" fill-opacity=".85" '
+             f'stroke="{LINE}" stroke-width="1.4" class="lit" style="{delay}"/>'
+             f'<rect x="{x + 20}" y="{y + 20}" width="52" height="52" rx="14" fill="{LIME}" fill-opacity=".1" '
+             f'stroke="{LIME}" stroke-opacity=".35" stroke-width="1.2"/>'
+             f'<g transform="translate({x + 31} {y + 31}) scale(1.25)" fill="none" stroke="{LIME}" stroke-width="1.7" '
+             f'stroke-linecap="round" stroke-linejoin="round" class="ico" style="{delay}">{GESTAO_ICONES[key]}</g>'
+             + d.t(x + cw - 20, y + 42, f"0{i + 1}", "m5", 13, MUTED, anchor="end", ls=1.2)
+             + d.t(x + 20, y + 104, title, "d6", 21, TEXT))
+        lines = FACES["b4"].wrap(desc, 16.5, cw - 40)
+        assert len(lines) <= 2, f"descrição longa demais em {title}: {lines}"
+        for j, line in enumerate(lines):
+            g += d.t(x + 20, y + 131 + j * 22, line, "b4", 16.5, MUTED)
+        d.add(f'<g class="in" style="animation-delay:{.3 + i * .07:.2f}s">{g}</g>')
+
+    # cadência
+    lx0, lx1, ly = 250, 1120, cy0 + 34
+    g = (f'<rect x="60" y="{cy0}" width="1080" height="100" rx="16" fill="{BG0}" fill-opacity=".55" '
+         f'stroke="{LINE}" stroke-width="1.4"/>'
+         + d.t(86, ly + 5, "CADÊNCIA", "m5", 13, MUTED, ls=2.4)
+         + f'<path d="M{lx0} {ly}H{lx1}" stroke="{LINE}" stroke-width="2"/>'
+         f'<path d="M{lx0} {ly}H{lx1}" stroke="{LIME}" stroke-opacity=".5" stroke-width="2" class="flow"/>'
+         f'<g class="run"><circle cx="{lx0}" cy="{ly}" r="11" fill="{LIME}" opacity=".2"/>'
+         f'<circle cx="{lx0}" cy="{ly}" r="5" fill="{LIME2}"/></g>')
+    seg = (lx1 - lx0) / 4
+    for i, (pill, text) in enumerate(cad):
+        x = lx0 + i * seg
+        w = FACES["m5"].width(pill, 12.5, 1.8) + 26
+        g += (f'<rect x="{n(x)}" y="{ly - 14}" width="{n(w)}" height="28" rx="14" fill="{BG0}" stroke="{LIME}" '
+              f'stroke-width="1.5"/>' + d.t(x + 13, ly + 4.5, pill, "m5", 12.5, LIME, ls=1.8)
+              + d.t(x + 2, ly + 40, text, "b4", 15, TEXT))
+        assert FACES["b4"].width(text, 15) < seg - 16, f"cadência longa demais: {text}"
+    d.add(f'<g class="in" style="animation-delay:.9s">{g}</g>')
+    d.save()
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# 02 · FRENTES
 # ══════════════════════════════════════════════════════════════════════════
 def icon_painel():
     s = (f'<rect x="4" y="8" width="56" height="48" rx="9" fill="none" stroke="{LIME}" stroke-width="2.2"/>'
@@ -398,7 +483,7 @@ def frentes():
 @keyframes drop{0%{opacity:0;transform:translateY(-12px)}12%,84%{opacity:1;transform:none}96%,100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.drop{opacity:1}}
 """
-    header(d, "01", "O QUE EU FAÇO", "Quatro frentes, um mesmo sistema",
+    header(d, "02", "O QUE EU FAÇO", "Quatro frentes, um mesmo sistema",
            "Tecnologia, da regra de negócio até o deploy.")
     cards = [
         ("Sistemas internos", "Hubs, portais, painéis e gestão.", icon_painel),
@@ -423,7 +508,7 @@ def frentes():
 
 
 # ══════════════════════════════════════════════════════════════════════════
-# 02 · STACK
+# 03 · STACK
 # ══════════════════════════════════════════════════════════════════════════
 def stack():
     rows = [
@@ -442,7 +527,7 @@ def stack():
 .chip{{animation:lit 9s ease-in-out infinite}}
 @keyframes lit{{0%,6%,100%{{stroke:{LINE};fill:{PANEL}}}2.5%{{stroke:{LIME};fill:{PANEL2}}}}}
 """
-    header(d, "02", "FERRAMENTAS", "Stack do dia a dia")
+    header(d, "03", "FERRAMENTAS", "Stack do dia a dia")
     k = 0
     for i, (label, chips) in enumerate(rows):
         cy = y0 + i * rh + rh / 2
@@ -463,7 +548,7 @@ def stack():
 
 
 # ══════════════════════════════════════════════════════════════════════════
-# 03 · PROJETOS
+# 04 · PROJETOS
 # ══════════════════════════════════════════════════════════════════════════
 def art_mensagens():
     s = (f'<rect x="8" y="20" width="96" height="68" rx="10" fill="{PANEL2}" stroke="{LIME}" stroke-width="1.8"/>'
@@ -511,7 +596,7 @@ def art_balancer():
 
 def projetos():
     d = Doc("03-projetos", 1200, 216, "Projetos — uma amostra do que já construí", glow=(1060, 240, 340))
-    header(d, "03", "TRABALHOS", "Projetos", "Uma amostra do que já construí.")
+    header(d, "04", "TRABALHOS", "Projetos", "Uma amostra do que já construí.")
     arrow = f'<g class="bob"><path d="M1108 96V150M1088 132L1108 152L1128 132" fill="none" stroke="{LIME}" ' \
             f'stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>'
     d.css = ".bob{animation:bob 2.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(8px)}}"
@@ -562,7 +647,7 @@ def projetos():
 
 
 # ══════════════════════════════════════════════════════════════════════════
-# 03 · DESTAQUE — Monitor HANA
+# 04 · DESTAQUE — Monitor HANA
 # ══════════════════════════════════════════════════════════════════════════
 def destaque():
     W, H = 1200, 470
@@ -654,7 +739,7 @@ def destaque():
 
 
 # ══════════════════════════════════════════════════════════════════════════
-# 04 · RODAPÉ
+# 05 · RODAPÉ
 # ══════════════════════════════════════════════════════════════════════════
 def wave(y, amp, period, total=1700):
     half = period / 2
@@ -691,6 +776,7 @@ if __name__ == "__main__":
     for key in FONT_SPEC:
         FACES[key] = Face(key)
     hero()
+    gestao()
     frentes()
     stack()
     projetos()

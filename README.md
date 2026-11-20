@@ -23,6 +23,10 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/flavio-r/clawd-desk"><img src="./assets/03-clawddesk.svg" width="100%" alt="Projeto em destaque, código aberto: ClawdDesk — transforma um celular antigo num monitor de mesa para o Claude Code: sessões em tempo real, limites de uso, tempo por projeto e aprovação de permissões pelo celular. Node.js, PWA e WebSocket." /></a>
+</p>
+
+<p align="center">
   <img src="./assets/03-cards.svg" width="100%" alt="Projetos — E-mail e WhatsApp: integração via Evolution API, usada como canal de mensagens das integrações. Document Interpreter: API que extrai texto de PDFs e imagens com OCR. Load Balancer: balanceamento de carga entre containers Docker com NGINX." />
 </p>
 

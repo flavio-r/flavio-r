@@ -739,7 +739,111 @@ def destaque():
 
 
 # ══════════════════════════════════════════════════════════════════════════
-# 05 · RODAPÉ
+# 04 · DESTAQUE — ClawdDesk (código aberto)
+# ══════════════════════════════════════════════════════════════════════════
+def clawddesk():
+    W, H = 1200, 470
+    desc = ("Transforma um celular antigo num monitor de mesa para o Claude Code: sessões em tempo real, "
+            "limites de uso, tempo por projeto e aprovação de permissões pelo celular.")
+    d = Doc("03-clawddesk", W, H, f"Projeto em destaque, código aberto: ClawdDesk — {desc}", glow=(900, 230, 430))
+    d.css = Template("""
+.s2,.s3,.perm,.okk{opacity:0}
+.s1{animation:s1 12s infinite}.s2{animation:s2 12s infinite}.s3{animation:s3 12s infinite}
+@keyframes s1{0%,28%{opacity:1}31%,94%{opacity:0}97%,100%{opacity:1}}
+@keyframes s2{0%,30%{opacity:0}33%,70%{opacity:1}73%,100%{opacity:0}}
+@keyframes s3{0%,72%{opacity:0}75%,93%{opacity:1}96%,100%{opacity:0}}
+.rc{animation:rc 12s infinite}
+@keyframes rc{0%,30%{stroke:$LIME}33%,70%{stroke:$LIME2}75%,94%{stroke:$MINT}97%,100%{stroke:$LIME}}
+.ctx{animation:ctx 6s ease-in-out infinite alternate}@keyframes ctx{from{stroke-dashoffset:160}to{stroke-dashoffset:118}}
+.perm{animation:perm 12s infinite}
+@keyframes perm{0%,31%{opacity:0;transform:translateY(12px)}35%,70%{opacity:1;transform:none}73%,100%{opacity:0}}
+.q{animation:q 12s infinite}@keyframes q{0%,58%{opacity:1}60%,100%{opacity:0}}
+.okk{animation:okk 12s infinite}@keyframes okk{0%,58%{opacity:0}60%,100%{opacity:1}}
+.pbtn{animation:pb 12s infinite}@keyframes pb{0%,54%,64%,100%{fill:$LIME}56%,62%{fill:$LIME2}}
+.tap{opacity:0;transform-box:fill-box;transform-origin:center;animation:tap 12s infinite}
+@keyframes tap{0%,54%{opacity:0;transform:scale(.4)}56%{opacity:.55;transform:scale(.7)}63%,100%{opacity:0;transform:scale(1.7)}}
+.lb{transform-box:fill-box;transform-origin:0 50%}
+.l5{animation:l5 7s ease-in-out infinite alternate}@keyframes l5{from{transform:scaleX(.38)}to{transform:scaleX(.46)}}
+""").substitute(LIME=LIME, LIME2=LIME2, MINT=MINT)
+
+    # ── texto ─────────────────────────────────────────────────────────────
+    d.add(
+        f'<rect x="64" y="58" width="122" height="32" rx="16" fill="{LIME}"/>',
+        d.t(125, 79.5, "DESTAQUE", "m5", 14.5, BG0, anchor="middle", ls=1.5),
+        d.t(202, 79.5, "CÓDIGO ABERTO · GITHUB ↗", "m5", 14, MUTED, ls=2),
+        d.t(61, 156, "ClawdDesk", "d8", 56, TEXT, cls="in"),
+        d.t(64, 192, "NODE.JS · PWA · WEBSOCKET · CLAUDE CODE", "m5", 14.5, LIME, ls=1.8, cls="in",
+            style="animation-delay:.1s"),
+    )
+    lines = FACES["b4"].wrap(desc, 21, 520)
+    assert len(lines) <= 4, lines
+    for j, line in enumerate(lines):
+        d.add(d.t(64, 234 + j * 30, line, "b4", 21, MUTED, cls="in", style="animation-delay:.2s"))
+    x, y = 64, 234 + len(lines) * 30 - 2
+    for k, chip in enumerate(["tempo real pelo Wi-Fi", "sem nuvem", "aprovação pelo celular", "tema claro e escuro"]):
+        w = FACES["m5"].width(chip, 14.5) + 44
+        if x + w > 600:
+            x, y = 64, y + 44
+        d.add(f'<g class="in" style="animation-delay:{.35 + k * .08:.2f}s">'
+              f'<rect x="{n(x)}" y="{y}" width="{n(w)}" height="34" rx="10" fill="{PANEL}" stroke="{LINE}" '
+              f'stroke-width="1.4"/><path d="M{n(x + 13)} {y + 17}l4 4l7 -8" fill="none" stroke="{LIME}" '
+              f'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>'
+              + d.t(x + 32, y + 22, chip, "m5", 14.5, TEXT) + "</g>")
+        x += w + 10
+
+    # ── celular no suporte ───────────────────────────────────────────────
+    g = (f'<path d="M846 350L826 404H954L934 350Z" fill="{PANEL}" stroke="{LINE}" stroke-width="1.6" '
+         f'stroke-linejoin="round"/><path d="M790 405H990" stroke="{LINE}" stroke-width="2" stroke-linecap="round"/>'
+         f'<rect x="650" y="88" width="480" height="264" rx="34" fill="#010a09" stroke="{LINE}" stroke-width="2"/>'
+         f'<circle cx="664" cy="220" r="3.5" fill="{LINE}"/>'
+         f'<rect x="676" y="104" width="436" height="232" rx="16" fill="#000"/>'
+         f'<circle cx="692" cy="121" r="3.5" fill="{LIME}" class="beat"/>'
+         + d.t(702, 125, "CLAWDDESK", "m5", 10.5, TEXT, ls=2)
+         + d.t(1098, 125, "21:49", "m5", 10.5, MUTED, anchor="end")
+         + f'<path d="M688 136H1100M866 148V326" stroke="{LINE}" stroke-width="1"/>'
+         # estado da sessão
+         f'<circle cx="770" cy="200" r="40" fill="none" stroke="{LINE}" stroke-width="6"/>'
+         f'<circle cx="770" cy="200" r="40" fill="none" stroke="{LIME}" stroke-width="6" stroke-linecap="round" '
+         f'stroke-dasharray="251.3" class="rc ctx" transform="rotate(-90 770 200)"/>'
+         + d.t(770, 207, "›_", "m5", 20, LIME, anchor="middle", cls="blink"))
+    for cls, state, color, sub in (("s1", "TRABALHANDO", LIME, "editando app.js"),
+                                   ("s2", "PRECISA DE VOCÊ", LIME2, "pedido de permissão"),
+                                   ("s3", "CONCLUÍDO", MINT, "tarefa concluída")):
+        g += (f'<g class="{cls}">' + d.t(770, 266, state, "m5", 13, color, anchor="middle", ls=1.2)
+              + d.t(770, 286, sub, "b4", 12.5, MUTED, anchor="middle") + "</g>")
+    # limites e sessões
+    g += (d.t(882, 160, "LIMITES", "m5", 10, MUTED, ls=1.6)
+          + d.t(882, 182, "SESSÃO 5H", "m5", 10.5, TEXT, ls=.6) + d.t(1098, 182, "42%", "m5", 11.5, TEXT, anchor="end")
+          + f'<rect x="882" y="189" width="216" height="7" rx="3.5" fill="{LINE}"/>'
+          f'<rect x="882" y="189" width="216" height="7" rx="3.5" fill="{LIME}" class="lb l5"/>'
+          + d.t(882, 214, "SEMANA", "m5", 10.5, TEXT, ls=.6) + d.t(1098, 214, "23%", "m5", 11.5, TEXT, anchor="end")
+          + f'<rect x="882" y="221" width="216" height="7" rx="3.5" fill="{LINE}"/>'
+          f'<rect x="882" y="221" width="{216 * .23:.1f}" height="7" rx="3.5" fill="{LIME}"/>'
+          + d.t(882, 250, "SESSÕES", "m5", 10, MUTED, ls=1.6))
+    for row, (name, pill, color, beat) in enumerate((("loja-online", "TRABALHANDO", LIME, True),
+                                                     ("api-pedidos", "PRONTO", MUTED, False))):
+        yy = 272 + row * 28
+        g += (f'<circle cx="886" cy="{yy - 4}" r="3.2" fill="{LIME if beat else MINT}"'
+              f'{" class=" + chr(34) + "beat" + chr(34) if beat else ""}/>'
+              + d.t(896, yy, name, "m5", 11, TEXT)
+              + f'<rect x="1018" y="{yy - 12}" width="80" height="17" rx="8.5" fill="none" stroke="{color}" '
+              f'stroke-width="1.1"/>' + d.t(1058, yy, pill, "m5", 8.5, color, anchor="middle", ls=.6))
+    # pedido de permissão, aprovado pelo celular
+    g += (f'<g class="perm"><rect x="876" y="236" width="228" height="94" rx="12" fill="{PANEL2}" stroke="{LIME2}" '
+          f'stroke-width="1.4"/>'
+          + f'<g class="q">' + d.t(890, 260, "Permitir rodar npm test?", "b4", 13.5, TEXT) + "</g>"
+          + f'<g class="okk">' + d.t(890, 259, "✓ APROVADO PELO CELULAR", "m5", 11, LIME2, ls=.6) + "</g>"
+          + f'<rect x="890" y="280" width="96" height="32" rx="9" fill="{LIME}" class="pbtn"/>'
+          + d.t(938, 300.5, "PERMITIR", "m5", 11, BG0, anchor="middle", ls=.6)
+          + f'<rect x="994" y="280" width="96" height="32" rx="9" fill="none" stroke="{LINE}" stroke-width="1.3"/>'
+          + d.t(1042, 300.5, "NEGAR", "m5", 11, MUTED, anchor="middle", ls=.6)
+          + f'<circle cx="938" cy="296" r="18" fill="{TEXT}" class="tap"/></g>')
+    d.add(f'<g class="in" style="animation-delay:.3s">{g}</g>')
+    d.save()
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# 06 · RODAPÉ
 # ══════════════════════════════════════════════════════════════════════════
 def wave(y, amp, period, total=1700):
     half = period / 2
@@ -781,4 +885,5 @@ if __name__ == "__main__":
     stack()
     projetos()
     destaque()
+    clawddesk()
     rodape()
